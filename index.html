@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="BTC Alert mobile strategy dashboard. Paper trading only.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/btc-alert-192.png">
+  <link rel="apple-touch-icon" href="./icons/btc-alert-192.png">
+  <title>BTC Alert</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070b12;--panel:#111a28;--line:#26364b;--text:#f2f6ff;--muted:#b4c2d6;--blue:#9bc5ff;}
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;height:100%;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+    body{display:flex;flex-direction:column;min-height:100dvh}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#0b1220;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand img{width:38px;height:38px;border-radius:10px}
+    h1{font-size:18px;line-height:1.2;margin:0} .sub{font-size:12px;color:var(--muted);margin:3px 0 0}
+    .open{color:var(--blue);font-weight:700;font-size:13px;text-decoration:none;border:1px solid #2b4669;background:#13233a;padding:8px 10px;border-radius:10px;white-space:nowrap}
+    main{flex:1;min-height:0;display:flex;flex-direction:column}
+    .notice{padding:7px 12px;font-size:12px;color:var(--muted);background:#0c1421;border-bottom:1px solid #1e2c40;text-align:center}
+    iframe{border:0;display:block;width:100%;flex:1;min-height:0;background:var(--bg)}
+    .fallback{padding:22px;text-align:center;color:var(--muted);max-width:560px;margin:auto}
+    .fallback a{color:var(--blue)}
+    #appFrame{height:calc(100dvh - 83px)}
+    @supports not (height:100dvh){#appFrame{height:calc(100vh - 83px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="./icons/btc-alert-192.png" alt="">
+      <div><h1>BTC Alert</h1><p class="sub">V1–V10 · Paper trading only</p></div>
+    </div>
+    <a class="open" href="https://script.google.com/macros/s/AKfycby9nLHo2IYaJb0bKSB9e3Oqr62OjL308YrAV1mQqVkbyA1-FhIZkq3vxjtmKEi7Tz4/exec" target="_blank" rel="noopener">Open backend ↗</a>
+  </header>
+  <main>
+    <div class="notice">Strategy signals and paper trades only · No live orders</div>
+    <iframe id="appFrame" title="BTC Alert dashboard" src="https://script.google.com/macros/s/AKfycby9nLHo2IYaJb0bKSB9e3Oqr62OjL308YrAV1mQqVkbyA1-FhIZkq3vxjtmKEi7Tz4/exec" allow="clipboard-read; clipboard-write"></iframe>
+    <noscript><div class="fallback">JavaScript is required to use this dashboard. <a href="https://script.google.com/macros/s/AKfycby9nLHo2IYaJb0bKSB9e3Oqr62OjL308YrAV1mQqVkbyA1-FhIZkq3vxjtmKEi7Tz4/exec">Open BTC Alert</a>.</div></noscript>
+  </main>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.warn('Service worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
